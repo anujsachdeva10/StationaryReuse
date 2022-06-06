@@ -5,7 +5,7 @@ from django.utils import timezone
 # Create your models here.
 
 class UserInfoModel(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="child_user")
     profile_pic = models.ImageField(upload_to="photos/userprofilepics", blank=True)
     description = models.CharField(max_length=250, blank=True)
     phone_number = models.PositiveSmallIntegerField(null=True)

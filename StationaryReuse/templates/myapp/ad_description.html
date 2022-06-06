@@ -14,7 +14,7 @@
 
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
+            <script src="https://kit.fontawesome.com/b0c88f7d0f.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <nav class="navigation">
@@ -41,110 +41,20 @@
                                 <i class="fa fa-plus"></i>
                             </a>
                         </li>
+                        <li class="navigation__list-item" style="padding-top: 5px">
+                            <a href="{% url "chat:message_inbox" %}" class="navigation__link">
+                                <i class="fa-solid fa-envelope"></i>
+                            </a>
+                        </li>
                         <li class="navigation__list-item">
                             <a href="{% url "user_logout" %}" class="navigation__link">
                                 <i class="fas fa-sign-out-alt"></i>
-                                <h4>logout</h4>
                             </a>
                         </li>
                     {% endif %}
                 </ul>
             </div>
         </nav>
-        <!-- <nav class="navbar navbar-dark navbar-expand-sm  fixed-top">
-            <div class="container">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Navbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <a class="navbar-brand" href="#"><img src="img/logo.png" height="30" width="41"></a>
-                <div class="collapse navbar-collapse" id="Navbar">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active"><a class="nav-link" href="#"><span class="fa fa-home fa-lg"></span>
-                                Home   </a></li>
-                        <li class="nav-item"><a class="nav-link" href="./aboutus.html"><span
-                                    class="fa fa-info fa-lg"></span> About   </a></li>
-                                    <li class="nav-item"><a class="nav-link" href="./contactus.html"><span class="fa fa-address-book-o fa-lg"></span>
-                                            Contact   </a></li>
-                        <li class="nav-item">
-                            <div class="dropdown">
-                                <a class="nav-link" href="#" class="dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown"
-                                    aria-haspopup="true"><span class="fa fa-list fa-lg"></span> Categories   </a>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <ul>
-                                        <li><a href="edit_profile.html"><i class="fa fa-book"></i> Books</a></li>
-                                        <li><a href="my-ads.html"><i class="fa fa-pencil"></i> Stationery</a></li>
-                                        <li><a href="favourite-ads.html"><i class="fa fa-map-o"></i> Others</a></li>
-                                        <li><a href="#"><i class="fa fa-comments-o"></i> Chat</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            
-                        </li>
-                        
-                    
-                    <li class="nav-item">
-                        <div class="dropdown">
-                            <a class="nav-link" href="#" class="dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true">My Account <span class="fa fa-caret-down"></span></a>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <ul>
-                                    <li><a href="edit_profile.html"><i class="fa fa-cog"></i> Edit Profile</a></li>
-                                    <li><a href="show_profile.html"><i class="fa fa-heart"></i> Show Profile</a></li>
-                                    <li><a href="#"><i class="fa fa-bookmark"></i> My Ads</a></li>
-                                    <li><a href="#"><i class="fa fa-heart"></i> My Favourites</a></li>
-                                    
-                                    <li><a href="#"><i class="fa fa-sign-out"></i> Sign Out</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </li>
-                    
-                    </ul>
-                    <span class="navbar-text">
-                        <a data-toggle="modal" data-target="#loginModal">
-                            <span class="fa fa-sign-in"></span> Login</a>
-                    </span>
-                </div>
-            </div>
-        </nav> -->
-        <!-- <div id="loginModal" class="modal fade" role="dialog">
-            <div class="modal-dialog modal-lg" role="content">
-                Modal content
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Login </h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-row">
-                                <div class="form-group col-sm-4">
-                                    <label class="sr-only" for="exampleInputEmail3">Email address</label>
-                                    <input type="email" class="form-control form-control-sm mr-1" id="exampleInputEmail3"
-                                        placeholder="Enter email">
-                                </div>
-                                <div class="form-group col-sm-4">
-                                    <label class="sr-only" for="exampleInputPassword3">Password</label>
-                                    <input type="password" class="form-control form-control-sm mr-1"
-                                        id="exampleInputPassword3" placeholder="Password">
-                                </div>
-                                <div class="col-sm-auto">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox">
-                                        <label class="form-check-label"> Remember me
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <button type="button" class="btn btn-secondary btn-sm ml-auto"
-                                    data-dismiss="modal">Cancel</button>
-                                <a class="btn btn-primary" href="./register.html" role="button">Sign in</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div> -->
         <div class="container">
             <div class="row">
                 <div class="col-sm-8">
@@ -216,13 +126,19 @@
                         <div class="card mt-5">
                             <div class="card-body">
                                 <div class="align-items-center text-center">
-                                <img src="{% static "myapp/images/avatar.svg" %}" alt="Admin" class="rounded-circle" width="150">
+                                {% if ad.user.profile_pic.url %}
+                                    <img src="{{ ad.user.profile_pic.url }}" alt="Admin" class="rounded-circle" width="150">
+                                {% else %}
+                                    <img src="{% static "myapp/images/avatar.svg" %}" alt="Admin" class="rounded-circle" width="150">      
+                                {% endif %}                          
                                 <div class="mt-0">
                                     <h5>{{ad.user.user.username}}</h5>
                                     <p class="text-secondary mb-1">{{ad.user.user.email}}</p>
                                     <p class="text-secondary mb-2">{{ad.user.phone_number}}</p>
                                     <!-- <p class="text-muted font-size-sm">College Name</p> -->
-                                    <button class="btn btn-outline-primary">Chat with the donor</button>
+                                    {% if user.pk != ad.user.user.pk %}
+                                        <a class="btn btn-outline-primary" href="{% url "chat:text_person" receiver_id=ad.user.user.pk %}">Chat with the donor</a>
+                                    {% endif %}
                                 </div>
                                 </div>
                             </div>

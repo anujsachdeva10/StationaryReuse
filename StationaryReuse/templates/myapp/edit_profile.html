@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="{% static "myapp/css/edit_profile.css" %}">
         <link rel="stylesheet" href="{% static "myapp/css/navigation.css" %}">
         <link rel="stylesheet" href="{% static "myapp/css/footer.css" %}">
+        <script src="https://kit.fontawesome.com/b0c88f7d0f.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <nav class="navigation">
@@ -34,10 +35,14 @@
                                 <i class="fa fa-plus"></i>
                             </a>
                         </li>
+                        <li class="navigation__list-item" style="padding-top: 5px">
+                            <a href="{% url "chat:message_inbox" %}" class="navigation__link">
+                                <i class="fa-solid fa-envelope"></i>
+                            </a>
+                        </li>
                         <li class="navigation__list-item">
                             <a href="{% url "user_logout" %}" class="navigation__link">
                                 <i class="fas fa-sign-out-alt"></i>
-                                <h4>logout</h4>
                             </a>
                         </li>
                     {% endif %}

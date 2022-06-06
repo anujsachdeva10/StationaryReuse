@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static "myapp/css/navigation.css" %}">
     <link rel="stylesheet" href="{% static "myapp/css/home.css" %}">
+    <script src="https://kit.fontawesome.com/b0c88f7d0f.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -40,11 +41,17 @@
                             <i class="fa fa-plus"></i>
                         </a>
                     </li>
+                    <li class="navigation__list-item" style="padding-top: 5px">
+                        <a href="{% url "chat:message_inbox" %}" class="navigation__link">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+                    </li>
                     <li class="navigation__list-item">
                         <a href="{% url "user_logout" %}" class="navigation__link">
                             <i class="fas fa-sign-out-alt"></i>
                         </a>
                     </li>
+                    
                 {% else %}
                     <li class="navigation__list-item">
                         <a href="{% url "user_registration" %}" class="navigation__link">
@@ -117,15 +124,16 @@
                                     <p class="card-subtitle text-muted">{{ad.user.user.email}}</p>
                                 {% endif %}
                             </a>
-                            {% if user.is_authenticated %}
-                                {% if ad.pk in favourites %}
+                            {% if user.is_authenticated and ad.user.user != user %}
+                                {% if ad.pk in favourites%}
                                     <a class="btn shadow" style="background-color: #20c997; color:white" href="{% url "favourites" username=user.username pk=ad.pk purpose="deleteadnew" %}" class="navigation__link">Remove Ad</a>
-                                {% else %}
+                                {% elif ad.user.user != user %}
                                     <a href="{% url "favourites" username=user.username pk=ad.pk purpose="seelater" %}" class="btn shadow" style="background-color: #20c997; color:white">See Later</a>
                                 {% endif %}
                             {% endif %}
                         </div>
                     </div>
+                    {{ad.posted_date}}
                 {% endfor %}
             </div>
         </div>        
@@ -141,7 +149,9 @@
             </div>
             <div class="col col-sm-4 view-btn">
                 <div>
-                    <a href="{% url "booksads" username=user.username %}" class="btn shadow" style="background-color: #20c997; color:white">View All</a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url "booksads" username=user.username %}" class="btn shadow" style="background-color: #20c997; color:white">View All</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -165,15 +175,16 @@
                                 <p class="card-subtitle text-muted">{{book.user.user.email}}</p>
                             {% endif %}
                         </a>
-                        {% if user.is_authenticated %}
-                            {% if book.pk in favourites %}
+                        {% if user.is_authenticated and book.user.user != user %}
+                            {% if book.pk in favourites%}
                                 <a class="btn shadow" style="background-color: #20c997; color:white" href="{% url "favourites" username=user.username pk=book.pk purpose="deleteadnew" %}" class="navigation__link">Remove Ad</a>
-                            {% else %}
+                            {% elif book.user.user != user %}
                                 <a href="{% url "favourites" username=user.username pk=book.pk purpose="seelater" %}" class="btn shadow" style="background-color: #20c997; color:white">See Later</a>
                             {% endif %}
                         {% endif %}
                     </div>
                 </div>
+                {{book.posted_date}}
             {% endfor %}
         </div>
     </div>
@@ -187,7 +198,9 @@
             </div>
             <div class="col col-sm-4 view-btn">
                 <div>
-                    <a href="{% url "stationaryads" username=user.username %}" class="btn shadow" style="background-color: #20c997; color:white">View All</a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url "stationaryads" username=user.username %}" class="btn shadow" style="background-color: #20c997; color:white">View All</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -210,15 +223,16 @@
                                 <p class="card-subtitle text-muted">{{item.user.user.email}}</p>
                             {% endif %}
                         </a>
-                        {% if user.is_authenticated %}
-                            {% if item.pk in favourites %}
+                        {% if user.is_authenticated and item.user.user != user %}
+                            {% if item.pk in favourites%}
                                 <a class="btn shadow" style="background-color: #20c997; color:white" href="{% url "favourites" username=user.username pk=item.pk purpose="deleteadnew" %}" class="navigation__link">Remove Ad</a>
-                            {% else %}
+                            {% elif ad.user.user != user %}
                                 <a href="{% url "favourites" username=user.username pk=item.pk purpose="seelater" %}" class="btn shadow" style="background-color: #20c997; color:white">See Later</a>
                             {% endif %}
                         {% endif %}
                     </div>
                 </div>
+                {{item.posted_date}}
             {% endfor %}
         </div>
     </div>
@@ -232,7 +246,9 @@
             </div>
             <div class="col col-sm-4 view-btn">
                 <div>
-                    <a href="{% url "uniformads" username=user.username  %}" class="btn shadow" style="background-color: #20c997; color:white">View All</a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url "uniformads" username=user.username  %}" class="btn shadow" style="background-color: #20c997; color:white">View All</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -255,15 +271,16 @@
                                 <p class="card-subtitle text-muted">{{costume.user.user.email}}</p>
                             {% endif %}
                         </a>
-                        {% if user.is_authenticated %}
-                            {% if costume.pk in favourites %}
+                        {% if user.is_authenticated and costume.user.user != user %}
+                            {% if costume.pk in favourites%}
                                 <a class="btn shadow" style="background-color: #20c997; color:white" href="{% url "favourites" username=user.username pk=costume.pk purpose="deleteadnew" %}" class="navigation__link">Remove Ad</a>
-                            {% else %}
+                            {% elif ad.user.user != user %}
                                 <a href="{% url "favourites" username=user.username pk=costume.pk purpose="seelater" %}" class="btn shadow" style="background-color: #20c997; color:white">See Later</a>
                             {% endif %}
                         {% endif %}
                     </div>
                 </div>
+                {{costume.posted_date}}
             {% endfor %}
         </div>
     </div>
@@ -278,7 +295,9 @@
             </div>
             <div class="col col-sm-4 view-btn">
                 <div>
-                    <a href="{% url "otherads" username=user.username %}" class="btn shadow" style="background-color: #20c997; color:white">View All</a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url "otherads" username=user.username %}" class="btn shadow" style="background-color: #20c997; color:white">View All</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -301,15 +320,16 @@
                                 <p class="card-subtitle text-muted">{{item.user.user.email}}</p>
                             {% endif %}
                         </a>
-                        {% if user.is_authenticated %}
-                            {% if item.pk in favourites %}
+                        {% if user.is_authenticated and item.user.user != user %}
+                            {% if item.pk in favourites%}
                                 <a class="btn shadow" style="background-color: #20c997; color:white" href="{% url "favourites" username=user.username pk=item.pk purpose="deleteadnew" %}" class="navigation__link">Remove Ad</a>
-                            {% else %}
+                            {% elif ad.user.user != user %}
                                 <a href="{% url "favourites" username=user.username pk=item.pk purpose="seelater" %}" class="btn shadow" style="background-color: #20c997; color:white">See Later</a>
                             {% endif %}
                         {% endif %}
                     </div>
                 </div>
+                {{item.posted_date}}
             {% endfor %}
         </div>
     </div>

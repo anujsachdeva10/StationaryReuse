@@ -9,6 +9,8 @@ from myapp.models import UserInfoModel, AdsInfoModel, AdsPhotosModel, FavouriteA
 from django.urls import reverse
 from django.utils import timezone
 import random
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 # Create your views here.
 
@@ -99,6 +101,12 @@ def HomePageView(request, username=None):
     stationary = AdsInfoModel.objects.filter(category="stationary")[:6]
     costumes = AdsInfoModel.objects.filter(category="costume")[:6]
     others = AdsInfoModel.objects.filter(category="other")[:6]
+
+    dateobj = datetime.now()
+    n = 30
+    past_date = dateobj - relativedelta(days = n)
+    AdsInfoModel.objects.filter(posted_date__lt=past_date).delete()
+
     if (username != None):
         cur = User.objects.get(username=username)   # Getting the user from user model
         cur_user = UserInfoModel.objects.get(user=cur)  # Getting the user from userinfomodel
@@ -121,7 +129,7 @@ def PostAdView(request, username):
         description = request.POST.get("description")
         purpose = request.POST.get("purpose")
         price = request.POST.get("price")
-        posted_date = timezone.now()
+        posted_date = datetime.now()
         # Price in case of donation is a null string so filtering that out.
         if price=="":
             price = 0

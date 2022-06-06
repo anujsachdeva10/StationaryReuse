@@ -39,4 +39,5 @@ urlpatterns = [
     path('favourites/<str:username>/<int:pk>/<str:purpose>/', views.ViewFavouriteAds, name="favourites"), # URL to remove an add from the favourite ad option.
     path('postedads/<str:username>/', views.ViewPostedAds, name="postedads"),
     path('postedads/<str:username>/<int:pk>/', views.ViewPostedAds, name="postedads"),  # URL for deleting a posted ad.
+    path('chat/', include('chat.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
